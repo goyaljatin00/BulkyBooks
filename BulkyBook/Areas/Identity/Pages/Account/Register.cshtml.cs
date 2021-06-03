@@ -148,20 +148,20 @@ namespace BulkyBook.Areas.Identity.Pages.Account
                         await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi));
                     }
 
-                    //await _userManager.AddToRoleAsync(user, SD.Role_Admin);
-                    if(user.Role == null)
-                    {
-                        await _userManager.AddToRoleAsync(user, SD.Role_User_Indi);
-                    }
-                    else
-                    {
-                        if(user.CompanyId > 0)
-                        {
-                            await _userManager.AddToRoleAsync(user, SD.Role_User_Comp);
-                        }
+                    await _userManager.AddToRoleAsync(user, SD.Role_Admin);
+                    //if(user.Role == null)
+                    //{
+                    //    await _userManager.AddToRoleAsync(user, SD.Role_User_Indi);
+                    //}
+                    //else
+                    //{
+                    //    if(user.CompanyId > 0)
+                    //    {
+                    //        await _userManager.AddToRoleAsync(user, SD.Role_User_Comp);
+                    //    }
 
-                        await _userManager.AddToRoleAsync(user, user.Role);
-                    }
+                    //    await _userManager.AddToRoleAsync(user, user.Role);
+                    //}
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
